@@ -1,9 +1,17 @@
 var express = require('express');
 var multer  = require('multer');
-var fs  = require('fs');
-
+var fs  = require('fs'); 
 var app = express();
 app.set('view engine', 'ejs');
+ 
+
+
+var serveIndex = require('serve-index')
+ 
+app.use('/uploads', express.static('uploads'), serveIndex('uploads', {'icons': true}))
+
+
+
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -30,5 +38,8 @@ app.post('/upload', function (req, res, next) {
         res.end("Upload completed.");
     });
 })
+
+
+
 
 app.listen(3000);
