@@ -1,6 +1,8 @@
 var express = require('express');
 var multer  = require('multer');
 var fs  = require('fs'); 
+var noBots = require('express-nobots');
+
 var app = express();
 app.set('view engine', 'ejs');
  
@@ -9,6 +11,7 @@ app.set('view engine', 'ejs');
 var serveIndex = require('serve-index')
  
 app.use('/uploads', express.static('uploads'), serveIndex('uploads', {'icons': true}))
+app.use(noBots({block:true}));
 
 
 
