@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "detect-bot": "^1.0.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-directory": "0.0.2",

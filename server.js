@@ -11,7 +11,6 @@ app.set('view engine', 'ejs');
 var serveIndex = require('serve-index')
  
 app.use('/uploads', express.static('uploads'), serveIndex('uploads', {'icons': true}))
-app.use(noBots({block:true}));
 
 
 
@@ -42,4 +41,4 @@ app.post('/upload', function (req, res, next) {
     });
 })
  
-app.listen(8080);
+app.listen(3000);
