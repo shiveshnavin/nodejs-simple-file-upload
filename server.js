@@ -35,11 +35,8 @@ app.post('/upload', function (req, res, next) {
         if (err) {
             return res.end("Something went wrong:(");
         }
-        res.end("Upload completed.");
+        res.redirect('/uploads'); 
     });
 })
-
-
-
-
+ 
 app.listen(3000);
