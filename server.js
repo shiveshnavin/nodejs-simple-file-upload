@@ -19,6 +19,35 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+
+app.get('/delete', (req, res) => {
+   
+    
+    if(!req.query.delete)
+    {
+        res.send(405)
+        return
+    }
+
+    var path=req.query.delete
+    if (fs.existsSync(path)) {
+
+        fs.unlinkSync(filePath);
+        res.send({message:"File Deleted",file:path});
+
+    }
+    else
+    {
+        res.send({message:"File does not exists"});
+    }
+
+
+});
+
+
+
+
+
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
         var dir = './uploads';

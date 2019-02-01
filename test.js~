@@ -1,0 +1,6 @@
+let http = require("http");
+http.createServer(function (request, response){
+	response.writeHead(800, {'Content -Type': 'text/plain'});
+	response.end('A new year, a new aim');
+}).listen(8081);
+console.log('All Happy');
