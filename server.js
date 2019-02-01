@@ -5,7 +5,8 @@ var noBots = require('express-nobots');
 
 var app = express();
 app.set('view engine', 'ejs');
- 
+var dir = './uploads';
+
 
 
 var serveIndex = require('serve-index')
@@ -29,10 +30,10 @@ app.get('/delete', (req, res) => {
         return
     }
 
-    var path=req.query.delete
+    var path=dir+'/'+req.query.delete
     if (fs.existsSync(path)) {
 
-        fs.unlinkSync(filePath);
+        fs.unlinkSync(path);
         res.send({message:"File Deleted",file:path});
 
     }
@@ -50,7 +51,6 @@ app.get('/delete', (req, res) => {
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        var dir = './uploads';
         if (!fs.existsSync(dir)){
             fs.mkdirSync(dir);
         }
