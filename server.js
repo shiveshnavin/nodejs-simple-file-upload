@@ -42,8 +42,7 @@ app.get('/secure', (req, res) => {
             result=encrypted;
         }
 
-        console.log(result)
-
+ 
 
         res.render('code',{result:result});
 
