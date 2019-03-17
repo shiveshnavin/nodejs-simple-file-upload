@@ -16,6 +16,45 @@ app.use('/uploads', express.static('uploads'), serveIndex('uploads', {'icons': t
 
 
 
+app.get('/secure', (req, res) => {
+    if(req.query.data!==undefined && req.query.key!==undefined )
+    {
+        var text=req.query.data
+        var key=req.query.key
+ 
+        var result='';
+ 
+        var crypto = require('crypto');  
+        var algorithm = 'aes256';   
+
+        if(req.query.decrypt !==undefined)
+        {
+            
+            var decipher = crypto.createDecipher(algorithm, key);
+            var decrypted = decipher.update(text, 'hex', 'utf8') + decipher.final('utf8');
+            result=decrypted;
+        }
+        else
+        {
+
+            var cipher = crypto.createCipher(algorithm, key);  
+            var encrypted = cipher.update(text, 'utf8', 'hex') + cipher.final('hex');
+            result=encrypted;
+        }
+
+        console.log(result)
+
+
+        res.render('code',{result:result});
+
+    }
+    else
+    res.render('code',{result:''});
+
+});
+ 
+
+
 app.get('/', (req, res) => {
     res.render('index');
 });
